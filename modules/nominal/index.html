@@ -648,7 +648,7 @@
 
 <h1 id="nominal">nominal<a class="headerlink" href="#nominal" title="Permanent link">&para;</a></h1>
 <h4 id="associations"><code>associations</code><a class="headerlink" href="#associations" title="Permanent link">&para;</a></h4>
-<p><code>associations(dataset, nominal_columns='auto', numerical_columns=None, mark_columns=False,nom_nom_assoc='cramer', num_num_assoc='pearson', nom_num_assoc='correlation_ratio', symmetric_nom_nom=True, symmetric_num_num=True, display_rows='all', display_columns='all', hide_rows=None, hide_columns=None, cramers_v_bias_correction=True, nan_strategy=_REPLACE, nan_replace_value=_DEFAULT_REPLACE_VALUE, ax=None, figsize=None, annot=True, fmt='.2f', cmap=None, sv_color='silver', cbar=True, vmax=1.0, vmin=None, plot=True, compute_only=False, clustering=False, title=None, filename=None)</code></p>
+<p><code>associations(dataset, nominal_columns='auto', numerical_columns=None, mark_columns=False,nom_nom_assoc='cramer', num_num_assoc='pearson', nom_num_assoc='correlation_ratio', symmetric_nom_nom=True, symmetric_num_num=True, display_rows='all', display_columns='all', hide_rows=None, hide_columns=None, cramers_v_bias_correction=True, nan_strategy=_REPLACE, nan_replace_value=_DEFAULT_REPLACE_VALUE, ax=None, figsize=None, annot=True, fmt='.2f', cmap=None, sv_color='silver', cbar=True, vmax=1.0, vmin=None, plot=True, compute_only=False, clustering=False, title=None, filename=None, multiprocessing=False, max_cpu_cores=None)</code></p>
 <p>Calculate the correlation/strength-of-association of features in data-set with both categorical and
 continuous features using:
  * Pearson's R for continuous-continuous cases
@@ -858,6 +858,16 @@ plotting mechanism (similar to the old <code>compute_associations</code> method)
 <p><strong><code>filename</code></strong>: <code>string</code> or <code>None</code></p>
 <p><em>Default: None</em></p>
 <p>If not None, plot will be saved to the given file name.</p>
+</li>
+<li>
+<p><strong><code>multiprocessing</code></strong>: <code>Boolean</code></p>
+<p><em>Default: False</em></p>
+<p>If True, use multiprocessing to speed up computations. If None, falls back to single core computation</p>
+</li>
+<li>
+<p><strong><code>max_cpu_cores</code></strong>: <code>int</code> or <code>None</code> </p>
+<p><em>Default</em>: <code>None</code></p>
+<p>If not <code>None</code>, <code>ProcessPoolExecutor</code> will use the given number of CPU cores</p>
 </li>
 </ul>
 <p><strong>Returns:</strong> A dictionary with the following keys:</p>
