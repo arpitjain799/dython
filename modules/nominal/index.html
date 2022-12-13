@@ -468,6 +468,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#replot_last_associations" class="md-nav__link">
+    replot_last_associations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#theils_u" class="md-nav__link">
     theils_u
   </a>
@@ -617,6 +624,13 @@
         <li class="md-nav__item">
   <a href="#numerical_encoding" class="md-nav__link">
     numerical_encoding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#replot_last_associations" class="md-nav__link">
+    replot_last_associations
   </a>
   
 </li>
@@ -778,7 +792,12 @@ correlations table columns. If string, must be a single feature's name. If <code
 <li>
 <p><strong><code>nan_strategy</code></strong> : <code>string</code></p>
 <p><em>Default: 'replace'</em></p>
-<p>How to handle missing values: can be either 'drop_samples' to remove samples with missing values, 'drop_features' to remove features (columns) with missing values, or 'replace' to replace all missing values with the nan_replace_value. Missing values are None and np.nan.</p>
+<p>How to handle missing values: can be either <code>'drop_samples'</code> to remove
+samples with missing values, <code>'drop_features'</code> to remove features
+(columns) with missing values, <code>'replace'</code> to replace all missing
+values with the <code>nan_replace_value</code>, or <code>'drop_sample_pairs'</code> to drop each
+pair of missing observables separately before calculating the corresponding coefficient.
+Missing values are <code>None</code> and <code>np.nan</code>.</p>
 </li>
 <li>
 <p><strong><code>nan_replace_value</code></strong> : <code>any</code></p>
@@ -1116,6 +1135,79 @@ using the following logic:</p>
 else, returns a tuple of the encoded DataFrame and dictionary, where each key is a two-value column, and the
 value is the original labels, as supplied by Pandas <code>factorize</code>. Will be empty if no two-value columns are
 present in the data-set</p>
+<hr />
+<h4 id="replot_last_associations"><code>replot_last_associations</code><a class="headerlink" href="#replot_last_associations" title="Permanent link">&para;</a></h4>
+<p><code>replot_last_associations(ax=None, figsize=None, annot=None, fmt=None, cmap=None, sv_color=None, cbar=None, vmax=None, vmin=None, plot=True, title=None, filename=None)</code></p>
+<p>Re-plot last computed associations heat-map. This method performs no new computations, but only allows
+to change the visual output of the last computed heat-map.</p>
+<ul>
+<li>
+<p><strong><code>ax</code></strong> : matplotlib <code>Axe</code> </p>
+<p><em>Default: <code>None</code></em></p>
+<p>Matplotlib Axis on which the heat-map will be plotted</p>
+</li>
+<li>
+<p><strong><code>figsize</code></strong> : <code>(int,int)</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>A Matplotlib figure-size tuple. If <code>None</code>, uses the last <code>associations</code> call value.
+Only used if <code>ax=None</code>.</p>
+</li>
+<li>
+<p><strong><code>annot</code></strong> : <code>Boolean</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>Plot number annotations on the heat-map. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>fmt</code></strong> : <code>string</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>String formatting of annotations. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>cmap</code></strong> : Matplotlib <code>colormap</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>A colormap to be used for the heat-map. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>sv_color</code></strong> : <code>string</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>A Matplotlib color. The color to be used when displaying single-value.
+If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>cbar</code></strong> : <code>Boolean</code>or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>Display heat-map's color-bar. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>vmax</code></strong> : <code>float</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>Set heat-map <code>vmax</code> option. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>vmin</code></strong> : <code>float</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>Set heat-map <code>vmin</code> option. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>plot</code></strong> : <code>Boolean</code></p>
+<p><em>Default: <code>True</code></em></p>
+<p>Plot a heat-map of the correlation matrix. If False, plotting still
+happens, but the heat-map will not be displayed.</p>
+</li>
+<li>
+<p><strong><code>title</code></strong> : <code>string</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>Plotted graph title. If <code>None</code>, uses the last <code>associations</code> call value.</p>
+</li>
+<li>
+<p><strong><code>filename</code></strong> : <code>string</code> or <code>None</code></p>
+<p><em>Default: <code>None</code></em></p>
+<p>If not <code>None</code>, plot will be saved to the given file name. Note: in order to avoid accidental file
+overwrites, the last <code>associations</code> call value is never used, and when filename is set to None,
+no writing to file occurs.</p>
+</li>
+</ul>
+<p><strong>Returns:</strong> A Matplotlib <code>Axe</code></p>
 <hr />
 <h4 id="theils_u"><code>theils_u</code><a class="headerlink" href="#theils_u" title="Permanent link">&para;</a></h4>
 <p><code>theils_u(x, y, nan_strategy=REPLACE, nan_replace_value=DEFAULT_REPLACE_VALUE)</code></p>
